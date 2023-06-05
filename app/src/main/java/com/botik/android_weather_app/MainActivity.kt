@@ -15,8 +15,12 @@ class MainActivity : AppCompatActivity() {
         val weather = Weather()
         try {
             val response = weather.getWeather("Кривой Рог")
+            binding.nameCountry.text = response.location?.country.toString()
+            binding.nameCity.text = response.location?.name.toString()
             binding.temperature.text = response.current?.temp_c.toString()
         } catch (e: Exception) {
+            binding.nameCountry.text = "[погода] ошибка"
+            binding.nameCity.text = "[погода] ошибка"
             binding.temperature.text = "[погода] ошибка"
         }
     }
