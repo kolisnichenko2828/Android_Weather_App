@@ -11,17 +11,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.temperature.text = "ожидайте ..."
+        binding.textTemperature.text = "ожидайте ..."
         val weather = Weather()
         try {
-            val response = weather.getWeather("Кривой Рог")
-            binding.nameCountry.text = response.location?.country.toString()
-            binding.nameCity.text = response.location?.name.toString()
-            binding.temperature.text = response.current?.temp_c.toString()
+            val response = weather.getDayWeather("Кривой Рог")
+            binding.textCountry.text = "Страна: " + response?.location?.country.toString()
+            binding.textCity.text = "Город: " + response?.location?.name.toString()
+            binding.textCondition.text = "Условия: " + response?.current?.condition?.text.toString()
+            binding.textTemperature.text = "Температура C: " + response?.current?.temp_c.toString()
+            binding.textFeelslike.text = "Чувствуется как: " + response?.current?.feelslike_c.toString()
+            binding.textWindKmH.text = "Скорость ветра км/ч: " + response?.current?.wind_kph.toString()
+            binding.textCloud.text = "Облачность %: " + response?.current?.cloud.toString()
         } catch (e: Exception) {
-            binding.nameCountry.text = "[погода] ошибка"
-            binding.nameCity.text = "[погода] ошибка"
-            binding.temperature.text = "[погода] ошибка"
+            binding.textCountry.text = "[погода] ошибка"
         }
     }
 }

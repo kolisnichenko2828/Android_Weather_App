@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="botikStyleForEditText" parent="Widget.Material3.TextInputEditText.FilledBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">#505050</item>
+        <item name="android:ems">10</item>
+        <item name="android:inputType">text</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="botikStyleForRelativeLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="botikStyleLinearLayout">
+        // material 3
+        <item name="android:background">@color/md_theme_dark_background</item>
+        // etc
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+</resources>

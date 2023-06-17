@@ -7,27 +7,37 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 import java.util.concurrent.TimeUnit
 
-class Weather {
-    private val API_KEY: String = "01146fdd46a844f7a6793903230206"
-    fun getWeather(city: String): WeatherResponse {
-        val okHttpClient = OkHttpClient.Builder()
+class Weather() {
+    private var API_KEY: String = ""
+    private var okHttpClient: OkHttpClient? = null
+    private var retrofit: Retrofit? = null
+    private var service: WeatherAPI? = null
+    private var response: WeatherResponse? = null
+
+    init {
+        API_KEY = "01146fdd46a844f7a6793903230206"
+        okHttpClient = OkHttpClient.Builder()
             .callTimeout(2, TimeUnit.MINUTES)
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
             .build()
-
-        val retrofit = Retrofit.Builder()
+        retrofit = Retrofit.Builder()
             .baseUrl("http://api.weatherapi.com/v1/")
             .addConverterFactory(GsonConverterFactory.create())
-            .client(okHttpClient)
+            .client(okHttpClient as OkHttpClient)
             .build()
-
-        val service = retrofit.create(WeatherAPI::class.java)
-
-        var response: WeatherResponse
+        service = retrofit?.create(WeatherAPI::class.java)
+    }
+    fun getCurrentWeather(city: String): WeatherResponse? {
         runBlocking {
-            response = service.getCurrentWeather(API_KEY, city, "no", "ru")
+            response = service?.getCurrentWeather(API_KEY, city, "no", "ru")
+        }
+        return response
+    }
+    fun getDayWeather(city: String, days: Int = 1): WeatherResponse? {
+        runBlocking {
+            response = service?.getDayWeather(API_KEY, city, "no", "ru", days)
         }
         return response
     }
@@ -39,11 +49,19 @@ interface WeatherAPI {
                                   @Query("q") q: String,
                                   @Query("aqi") aqi: String,
                                   @Query("lang") lang: String): WeatherResponse
+
+    @GET("forecast.json?")
+    suspend fun getDayWeather(@Query("key") key: String,
+                              @Query("q") q: String,
+                              @Query("aqi") aqi: String,
+                              @Query("lang") lang: String,
+                              @Query("days") days: Int): WeatherResponse
 }
 
 data class WeatherResponse(
     val location: Location?,
-    val current: Current?
+    val current: Current?,
+    val forecast: Forecast?
 )
 
 data class Location(
@@ -87,4 +105,41 @@ data class Condition(
     val text: String?,
     val icon: String?,
     val code: Int
+)
+
+// forecast
+
+data class Forecast(
+    val forecastday: List<ForecastDay>
+)
+
+data class ForecastDay(
+    val date: String,
+    val date_epoch: Double,
+    val day: Day,
+    // val astro: Astro,
+    // val hour: List<Hour>
+)
+
+data class Day(
+    val maxtemp_c: Double,
+    val maxtemp_f: Double,
+    val mintemp_c: Double,
+    val mintemp_f: Double,
+    val avgtemp_c: Double,
+    val avgtemp_f: Double,
+    val maxwind_mph: Double,
+    val maxwind_kph: Double,
+    val totalprecip_mm: Double,
+    val totalprecip_in: Double,
+    val totalsnow_cm: Double,
+    val avgvis_km: Double,
+    val avgvis_miles: Double,
+    val avghumidity: Double,
+    val daily_will_it_rain: Double,
+    val daily_chance_of_rain: String,
+    val daily_will_it_snow: Double,
+    val daily_chance_of_snow: String,
+    val condition: Condition,
+    val uv: Double
 )
