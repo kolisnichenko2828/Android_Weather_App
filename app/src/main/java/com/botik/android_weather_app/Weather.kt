@@ -39,12 +39,6 @@ class Weather() {
 }
 
 interface WeatherAPI {
-    @GET("current.json?")
-    suspend fun getCurrentWeather(@Query("key") key: String,
-                                  @Query("q") q: String,
-                                  @Query("aqi") aqi: String,
-                                  @Query("lang") lang: String): WeatherResponse
-
     @GET("forecast.json?")
     suspend fun getDayWeather(@Query("key") key: String,
                               @Query("q") q: String,
