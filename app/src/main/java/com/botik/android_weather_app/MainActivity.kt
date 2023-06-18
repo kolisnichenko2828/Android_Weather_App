@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         binding.textTemperature.text = "ожидайте ..."
         val weather = Weather()
         try {
-            val response = weather.getDayWeather("Кривой Рог")
+            val response = weather.getWeather("Кривой Рог")
             binding.textCountry.text = "Страна: " + response?.location?.country.toString()
             binding.textCity.text = "Город: " + response?.location?.name.toString()
             binding.textCondition.text = "Условия: " + response?.current?.condition?.text.toString()
@@ -24,6 +24,10 @@ class MainActivity : AppCompatActivity() {
             binding.textCloud.text = "Облачность %: " + response?.current?.cloud.toString()
         } catch (e: Exception) {
             binding.textCountry.text = "[погода] ошибка"
+        }
+
+        binding.elevatedButtonTomorrow.setOnClickListener() {
+            // TODO
         }
     }
 }
