@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity"
-    style="@style/botikStyleForRelativeLayout">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:background="@color/md_theme_light_background"
@@ -115,7 +116,7 @@
                     android:textSize="20sp"
                     android:textColor="@color/md_theme_light_onSurfaceVariant" />
                 <TextView
-                    android:id="@+id/textWindKmH"
+                    android:id="@+id/textWind"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="TextView"
