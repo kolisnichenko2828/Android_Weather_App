@@ -12,7 +12,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.md_theme_light_colorStatusBar)
 
         binding.textTemperature.text = "ожидайте ..."
         try {
@@ -23,7 +22,6 @@ class MainActivity : AppCompatActivity() {
             binding.textCondition.text = "Условия: " + response?.current?.condition?.text.toString()
             binding.textTemperature.text = "Температура C: " + response?.current?.temp_c.toString()
             binding.textFeelslike.text = "Чувствуется как: " + response?.current?.feelslike_c.toString()
-
             if((response?.current?.wind_kph as Int) < 4) {
                 binding.textWind.text = "Скорость ветра км/ч: " + response?.current?.wind_kph.toString() + " (слабый ветер)"
             }
@@ -33,7 +31,6 @@ class MainActivity : AppCompatActivity() {
             else {
                 binding.textWind.text = "Скорость ветра км/ч: " + response?.current?.wind_kph.toString() + " (сильный ветер)"
             }
-            
             binding.textCloud.text = "Облачность %: " + response?.current?.cloud.toString()
         } catch (e: Exception) {
             binding.textCountry.text = "[погода] ошибка"
@@ -47,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         binding.elevatedButtonTomorrow.setOnClickListener() {
             val intent = Intent(this, SecondActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left)
         }
 
         binding.elevatedButtonAfterday.setOnClickListener() {
