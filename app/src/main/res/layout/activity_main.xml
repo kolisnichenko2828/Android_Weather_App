@@ -66,73 +66,11 @@
 
         </LinearLayout>
 
-        <androidx.cardview.widget.CardView
-            app:cardCornerRadius="15dp"
-            android:backgroundTint="@color/md_theme_light_surfaceVariant"
-
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp">
+            android:layout_height="match_parent">
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp">
-
-                <TextView
-                    android:id="@+id/textCountry"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:textSize="20sp"
-                    android:textColor="@color/md_theme_light_onSurfaceVariant" />
-                <TextView
-                    android:id="@+id/textCity"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:textSize="20sp"
-                    android:textColor="@color/md_theme_light_onSurfaceVariant" />
-                <TextView
-                    android:id="@+id/textCondition"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:textSize="20sp"
-                    android:textColor="@color/md_theme_light_onSurfaceVariant" />
-                <TextView
-                    android:id="@+id/textTemperature"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:textSize="20sp"
-                    android:textColor="@color/md_theme_light_onSurfaceVariant" />
-                <TextView
-                    android:id="@+id/textFeelslike"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:textSize="20sp"
-                    android:textColor="@color/md_theme_light_onSurfaceVariant" />
-                <TextView
-                    android:id="@+id/textWind"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:textSize="20sp"
-                    android:textColor="@color/md_theme_light_onSurfaceVariant" />
-                <TextView
-                    android:id="@+id/textCloud"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:textSize="20sp"
-                    android:textColor="@color/md_theme_light_onSurfaceVariant" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
 
