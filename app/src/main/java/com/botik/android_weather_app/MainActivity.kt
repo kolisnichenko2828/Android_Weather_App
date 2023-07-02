@@ -17,21 +17,21 @@ class MainActivity : AppCompatActivity() {
         try {
             val weather = Weather()
             val response = weather.getWeather("Кривой Рог")
-            binding.textCountry.text = "Страна: " + response?.location?.country.toString()
-            binding.textCity.text = "Город: " + response?.location?.name.toString()
-            binding.textCondition.text = "Условия: " + response?.current?.condition?.text.toString()
-            binding.textTemperature.text = "Температура C: " + response?.current?.temp_c.toString()
-            binding.textFeelslike.text = "Чувствуется как: " + response?.current?.feelslike_c.toString()
-            if((response?.current?.wind_kph as Int) < 4) {
-                binding.textWind.text = "Скорость ветра км/ч: " + response?.current?.wind_kph.toString() + " (слабый ветер)"
+            binding.textCountry.text = "Страна: ${response?.location?.country}"
+            binding.textCity.text = "Город: ${response?.location?.name}"
+            binding.textCondition.text = "Условия: ${response?.current?.condition?.text}"
+            binding.textTemperature.text = "Температура C: ${response?.current?.temp_c}"
+            binding.textFeelslike.text = "Чувствуется как: ${response?.current?.feelslike_c}"
+            if(response?.current?.wind_kph!! < 4) {
+                binding.textWind.text = "Скорость ветра км/ч: ${response?.current?.wind_kph} (слабый ветер)"
             }
-            else if((response?.current?.wind_kph as Int) < 8) {
-                binding.textWind.text = "Скорость ветра км/ч: " + response?.current?.wind_kph.toString() + " (средний ветер)"
+            else if(response?.current?.wind_kph!! < 8) {
+                binding.textWind.text = "Скорость ветра км/ч: ${response?.current?.wind_kph} (средний ветер)"
             }
             else {
-                binding.textWind.text = "Скорость ветра км/ч: " + response?.current?.wind_kph.toString() + " (сильный ветер)"
+                binding.textWind.text = "Скорость ветра км/ч: ${response?.current?.wind_kph} (сильный ветер)"
             }
-            binding.textCloud.text = "Облачность %: " + response?.current?.cloud.toString()
+            binding.textCloud.text = "Облачность %: ${response?.current?.cloud}"
         } catch (e: Exception) {
             binding.textCountry.text = "[погода] ошибка"
         }
